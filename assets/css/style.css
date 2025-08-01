@@ -4683,6 +4683,15 @@ a.ui-button:active, .ui-button:active,
   }
 }
 
+/* Custom countdown labels styling */
+#clock {
+  color: white !important;
+}
+
+#clock .box {
+  color: white !important;
+}
+
 .static-hero .wpo-wedding-date #clock span,
 .static-hero .wpo-wedding-date #clock3 span,
 .static-hero-s2 .wpo-wedding-date #clock span,
@@ -4693,7 +4702,7 @@ a.ui-button:active, .ui-button:active,
 .static-hero-s5 .wpo-wedding-date #clock3 span,
 .static-hero-s10 .wpo-wedding-date #clock span,
 .static-hero-s10 .wpo-wedding-date #clock3 span {
-  color: #5C5C5C;
+  color: white !important;
   font-size: 20px;
 }
 
