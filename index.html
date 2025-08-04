@@ -61,9 +61,7 @@
                             <div class="col-xl-6 col-lg-6 col-12">
                                 <div class="wpo-static-hero-inner">
                                     <div class="slide-title wow zoomIn" data-wow-duration="1500ms">
-                                        <div class="typing-container">
-                                            <h2 class="typing-effect">Convite</h2>
-                                        </div>
+                                        <h2>Salve <span>essa</span> Data</h2>
                                         <div class="shape"><img src="assets/images/slider/hero4-flower.png" alt="">
                                         </div>
                                     </div>
@@ -470,80 +468,6 @@
     <script src="assets/js/script.js"></script>
     <!-- Custom countdown script -->
     <script src="assets/js/countdown-custom.js"></script>
-    
-    <!-- Script para efeito de digitação -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Script de digitação carregado');
-            
-            // Aguardar um pouco mais para garantir que WOW.js termine
-            setTimeout(() => {
-                const typingElement = document.querySelector('.typing-effect');
-                console.log('Elemento encontrado:', typingElement);
-                
-                if (typingElement) {
-                    const text = typingElement.textContent.trim();
-                    console.log('Texto a ser digitado:', text);
-                    
-                    // Forçar estilos para garantir visibilidade
-                    typingElement.style.visibility = 'visible';
-                    typingElement.style.opacity = '1';
-                    typingElement.style.display = 'inline-block';
-                    typingElement.textContent = '';
-                    
-                    // Criar cursor
-                    const cursor = document.createElement('span');
-                    cursor.textContent = '|';
-                    cursor.style.animation = 'blink 1s infinite';
-                    cursor.style.color = '#fff';
-                    cursor.style.fontWeight = 'bold';
-                    cursor.style.marginLeft = '2px';
-                    cursor.style.fontSize = '4rem';
-                    
-                    // Adicionar cursor ao elemento
-                    typingElement.parentNode.insertBefore(cursor, typingElement.nextSibling);
-                    
-                    let i = 0;
-                    const typeWriter = () => {
-                        if (i < text.length) {
-                            typingElement.textContent += text.charAt(i);
-                            i++;
-                            setTimeout(typeWriter, 200);
-                        } else {
-                            // Remove o cursor quando terminar
-                            setTimeout(() => {
-                                cursor.remove();
-                            }, 2000);
-                        }
-                    };
-                    
-                    // CSS para cursor piscando
-                    const style = document.createElement('style');
-                    style.textContent = `
-                        @keyframes blink {
-                            0%, 50% { opacity: 1; }
-                            51%, 100% { opacity: 0; }
-                        }
-                        .typing-effect {
-                            font-size: 4rem !important;
-                            font-weight: 700 !important;
-                            color: #fff !important;
-                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
-                            margin: 0 !important;
-                            line-height: 1.2 !important;
-                            display: inline-block !important;
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    
-                    // Inicia o efeito
-                    typeWriter();
-                } else {
-                    console.error('Elemento .typing-effect não encontrado');
-                }
-            }, 2000); // Aguardar 2 segundos para WOW.js
-        });
-    </script>
 </body>
 
 </html>
