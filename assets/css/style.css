@@ -4692,6 +4692,33 @@ a.ui-button:active, .ui-button:active,
   color: white !important;
 }
 
+/* Google Forms iframe styling */
+.google-form-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.google-form-container iframe {
+  width: 100%;
+  min-height: 600px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .google-form-container iframe {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .google-form-container iframe {
+    min-height: 450px;
+  }
+}
+
 .static-hero .wpo-wedding-date #clock span,
 .static-hero .wpo-wedding-date #clock3 span,
 .static-hero-s2 .wpo-wedding-date #clock span,
