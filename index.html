@@ -29,11 +29,7 @@
 
 <body class="color3">
 
-    <!-- Background music -->
-    <audio autoplay loop>
-        <source src="assets/audio/audio.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+    <!-- Background music - controlled via music box toggle -->
 
     <!-- start page-wrapper -->
     <div class="page-wrapper">
@@ -466,8 +462,55 @@
     <script src="assets/js/tilt.jquery.min.js"></script>
     <!-- Custom script for this template -->
     <script src="assets/js/script.js"></script>
+    <!-- Music control -->
+    <div class="music-box">
+        <button class="toggle-music-box">
+            <i class="fa fa-music"></i>
+        </button>
+        <div class="music-holder">
+            <audio id="bg-music" loop>
+                <source src="assets/audio/audio.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+    </div>
+
     <!-- Custom countdown script -->
     <script src="assets/js/countdown-custom.js"></script>
+
+    <script>
+        // Music control functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bg-music');
+            const toggleBtn = document.querySelector('.toggle-music-box');
+            let isPlaying = false;
+
+            toggleBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    toggleBtn.innerHTML = '<i class="fa fa-music"></i>';
+                    toggleBtn.classList.remove('playing');
+                } else {
+                    audio.play().catch(function(error) {
+                        console.log('Audio playback failed:', error);
+                    });
+                    toggleBtn.innerHTML = '<i class="fa fa-pause"></i>';
+                    toggleBtn.classList.add('playing');
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Try to autoplay muted first, then unmute
+            audio.volume = 0;
+            audio.play().then(function() {
+                setTimeout(function() {
+                    audio.volume = 1;
+                }, 1000);
+            }).catch(function(error) {
+                console.log('Autoplay failed, user interaction required');
+            });
+        });
+    </script>
 </body>
 
 </html>
