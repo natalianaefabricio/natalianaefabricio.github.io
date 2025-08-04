@@ -485,30 +485,50 @@
             const toggleBtn = document.querySelector('.toggle-music-box');
             let isPlaying = false;
 
+            // Add muted attribute initially for Chrome
+            audio.muted = true;
+
             toggleBtn.addEventListener('click', function() {
                 if (isPlaying) {
                     audio.pause();
                     toggleBtn.innerHTML = '<i class="fa fa-music"></i>';
                     toggleBtn.classList.remove('playing');
+                    isPlaying = false;
                 } else {
-                    audio.play().catch(function(error) {
-                        console.log('Audio playback failed:', error);
-                    });
-                    toggleBtn.innerHTML = '<i class="fa fa-pause"></i>';
-                    toggleBtn.classList.add('playing');
+                    // Unmute and play
+                    audio.muted = false;
+                    audio.volume = 1;
+                    
+                    // Attempt to play with better error handling
+                    const playPromise = audio.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(function() {
+                            toggleBtn.innerHTML = '<i class="fa fa-pause"></i>';
+                            toggleBtn.classList.add('playing');
+                            isPlaying = true;
+                            console.log('Music started successfully');
+                        }).catch(function(error) {
+                            console.log('Audio playback failed:', error);
+                            alert('Por favor, clique novamente para tocar a música.');
+                            // Reset state
+                            audio.muted = true;
+                        });
+                    } else {
+                        // Fallback for older browsers
+                        audio.play();
+                        toggleBtn.innerHTML = '<i class="fa fa-pause"></i>';
+                        toggleBtn.classList.add('playing');
+                        isPlaying = true;
+                    }
                 }
-                isPlaying = !isPlaying;
             });
 
-            // Try to autoplay muted first, then unmute
-            audio.volume = 0;
-            audio.play().then(function() {
-                setTimeout(function() {
-                    audio.volume = 1;
-                }, 1000);
-            }).catch(function(error) {
-                console.log('Autoplay failed, user interaction required');
-            });
+            // Preload the audio
+            audio.load();
+
+            // Remove autoplay attempt - Chrome blocks it anyway
+            console.log('Music ready - click the music note to play');
         });
     </script>
 </body>
