@@ -29901,4 +29901,60 @@ a.ui-button:active, .ui-button:active,
   }
 }
 
+/* Custom video button size adjustments */
+.wpo-video-section .video-btn,
+.wpo-video-section-s2 .video-btn {
+  width: 180px !important;
+  height: 180px !important;
+  line-height: 180px !important;
+  border-width: 2px !important;
+}
+
+.wpo-video-section .video-btn .fi:before,
+.wpo-video-section-s2 .video-btn .fi:before {
+  font-size: 60px !important;
+}
+
+@media (max-width: 991px) {
+  .wpo-video-section .video-btn,
+  .wpo-video-section-s2 .video-btn {
+    width: 150px !important;
+    height: 150px !important;
+    line-height: 150px !important;
+  }
+  
+  .wpo-video-section .video-btn .fi:before,
+  .wpo-video-section-s2 .video-btn .fi:before {
+    font-size: 50px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .wpo-video-section .video-btn,
+  .wpo-video-section-s2 .video-btn {
+    width: 120px !important;
+    height: 120px !important;
+    line-height: 120px !important;
+  }
+  
+  .wpo-video-section .video-btn .fi:before,
+  .wpo-video-section-s2 .video-btn .fi:before {
+    font-size: 40px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .wpo-video-section .video-btn,
+  .wpo-video-section-s2 .video-btn {
+    width: 100px !important;
+    height: 100px !important;
+    line-height: 100px !important;
+  }
+  
+  .wpo-video-section .video-btn .fi:before,
+  .wpo-video-section-s2 .video-btn .fi:before {
+    font-size: 35px !important;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
