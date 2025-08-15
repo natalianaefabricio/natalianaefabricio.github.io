@@ -141,9 +141,21 @@
             <h2 class="hidden">some</h2>
             <div class="container-fluid">
                 <div class="video-wrap">
-                    <img src="assets/images/video-img/img-2.jpg" alt="">
-                    <a href="assets/images/video-img/lv_0_20250815122713.mp4" class="video-btn" data-type="iframe"><i
-                            class="fi flaticon-play"></i></a>
+                    <div class="responsive-video-container">
+                        <iframe id="video-iframe" 
+                                src="" 
+                                frameborder="0" 
+                                allowfullscreen
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                style="display: none;">
+                        </iframe>
+                        <div class="video-thumbnail" id="video-thumbnail">
+                            <img src="assets/images/video-img/img-2.jpg" alt="Video Thumbnail">
+                            <button class="video-btn" id="play-video-btn">
+                                <i class="fi flaticon-play"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -429,6 +441,35 @@
     <!-- All JavaScript files
     ================================================== -->
     <script src="assets/js/jquery.min.js"></script>
+    
+    <!-- Responsive Video Script -->
+    <script>
+    $(document).ready(function() {
+        // Handle video play button click
+        $('#play-video-btn').on('click', function(e) {
+            e.preventDefault();
+            
+            var videoPath = 'assets/images/video-img/lv_0_20250815122713.mp4';
+            var iframe = $('#video-iframe');
+            var thumbnail = $('#video-thumbnail');
+            
+            // Set the video source to the iframe
+            iframe.attr('src', videoPath);
+            
+            // Hide thumbnail and show iframe
+            thumbnail.fadeOut(300, function() {
+                iframe.fadeIn(300).css('display', 'block');
+            });
+        });
+        
+        // Optional: Handle iframe load error
+        $('#video-iframe').on('error', function() {
+            console.log('Error loading video in iframe');
+            // Fallback: open video in new tab
+            window.open('assets/images/video-img/lv_0_20250815122713.mp4', '_blank');
+        });
+    });
+    </script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <!-- Plugins for this template -->
     <script src="assets/js/modernizr.custom.js"></script>
